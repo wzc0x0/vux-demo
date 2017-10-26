@@ -3,8 +3,17 @@ import Router from 'vue-router'
 
 import Home from '@/components/home'
 
+const notFound = () =>
+    import ('@/components/404')
+
 Vue.use(Router)
 
 export default new Router({
-    routes: [Home]
+    routes: [Home,
+        {
+            path: '*',
+            component: NotFound,
+            hidden: true
+        }
+    ]
 })
