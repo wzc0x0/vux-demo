@@ -5,7 +5,9 @@
         </div>
         <group title="cell demo" >
             <cell v-for="(item,index) in items" 
-                :key="index" :title="item.title" is-link>
+                :key="index" :title="item.title" link="/detail">
+                <router-view><detail :item="item"></detail></router-view>
+                <img :src="item" >
             </cell>
         </group>
     </div>
@@ -13,11 +15,13 @@
 <script>
 import { Group, Cell } from 'vux'
 import _ajax from 'flyio'
+import Detail from './detail'
 
 export default {
   components: {
     Group,
-    Cell
+    Cell,
+    Detail
   },
   data(){
       return{
@@ -30,7 +34,7 @@ export default {
           showapi_sign:'121481207dd94c37b9a9c4554cd2ac2e'
       }).then( ({data}) => {
           this.items = data.showapi_res_body.pagebean.contentlist
-      })
+      }) 
   }
 }
 </script>
