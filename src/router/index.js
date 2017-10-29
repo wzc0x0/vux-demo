@@ -22,8 +22,11 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     store.commit('updateLoadingStatus', { isLoading: true })
+    next()
 })
 
 router.afterEach((to) => {
     store.commit('updateLoadingStatus', { isLoading: false })
 })
+
+export default router

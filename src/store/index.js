@@ -1,6 +1,9 @@
+import Vue from 'vue'
 import Vuex from 'vuex'
 
-const store = new Vuex.store({})
+Vue.use(Vuex)
+
+const store = new Vuex.Store({})
 
 store.registerModule('vux', {
     state: {
@@ -12,3 +15,5 @@ store.registerModule('vux', {
         }
     }
 })
+
+export default store
