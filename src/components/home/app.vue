@@ -3,37 +3,51 @@
         <div class="vux-demo">
             <img class="logo" src="../../assets/vux_logo.png">
         </div>
-        <group title="cell demo" >
-            <cell v-for="(item,index) in items" 
-                :key="index" :title="item.title" link="/detail">
-                <router-view><detail :item="item"></detail></router-view>
-                <img :src="item" >
+        <group v-for="(item,index) in items" :key="index" >
+            <cell
+                :title="item.name"
+                :border-intent="false"
+                @click.native="showContent($event)" 
+                is-link>
             </cell>
+            <template v-if='showContent' class="slide" :class="showContent ? animate : ''">
+                <cell-box v-for="(l,i) in item.list" :key="i"
+                    class="sub-item" 
+                    is-link>
+                    {{ l.name }}
+                </cell-box>
+            </template>
         </group>
     </div>
 </template>
 <script>
-import { Group, Cell } from 'vux'
+import { Group, Cell ,CellBox} from 'vux'
 import _ajax from 'flyio'
-import Detail from './detail'
 
 export default {
   components: {
     Group,
     Cell,
-    Detail
+    CellBox
   },
   data(){
-      return{
-          items:''
+    return{
+        items:'',
+        lists:'',
+        // showContent:false
+    }
+  },
+  methods:{
+      showContent(index){
+          console.log(index)
       }
   },
   mounted(){
-      _ajax.get('http://route.showapi.com/109-35',{
+      _ajax.get('http://route.showapi.com/852-1',{
           showapi_appid:'48659',
           showapi_sign:'121481207dd94c37b9a9c4554cd2ac2e'
       }).then( ({data}) => {
-          this.items = data.showapi_res_body.pagebean.contentlist
+          this.items = data.showapi_res_body.list
       }) 
   }
 }
