@@ -12,11 +12,11 @@ Vue.use(Router)
 
 const router = new Router({
     routes: [...Home,
-        {
-            path: '*',
-            component: NotFound,
-            hidden: true
-        }
+        // {
+        //     path: '*',
+        //     component: NotFound,
+        //     hidden: true
+        // }
     ]
 })
 

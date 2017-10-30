@@ -6,13 +6,12 @@
         <group v-for="(item,index) in items" :key="index" >
             <cell
                 :title="item.name"
-                :border-intent="false"
-                @click.native="showContent($event)" 
-                is-link>
+                :border-intent="false">
             </cell>
-            <template v-if='showContent' class="slide" :class="showContent ? animate : ''">
+            <template>
                 <cell-box v-for="(l,i) in item.list" :key="i"
-                    class="sub-item" 
+                    class="sub-item"
+                    :link="{path:`/detail/${l.id}`}"
                     is-link>
                     {{ l.name }}
                 </cell-box>
@@ -37,10 +36,13 @@ export default {
         // showContent:false
     }
   },
-  methods:{
-      showContent(index){
-          console.log(index)
+  computed:{
+      goDetail(_id){
+          return `/detail/${_id}`
       }
+  },
+  methods:{
+      
   },
   mounted(){
       _ajax.get('http://route.showapi.com/852-1',{

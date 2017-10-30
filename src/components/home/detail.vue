@@ -13,9 +13,8 @@
   </div>
 </template>
 <script>
-import { Masker } from 'vux'
+import { Masker , querystring as _url} from 'vux'
 export default {
-    props:['item'],
     components:{
         Masker
     },
@@ -23,6 +22,9 @@ export default {
         return{
 
         }
+    },
+    mounted(){
+        console.log(this.$route.params.id)
     }
 }
 </script>

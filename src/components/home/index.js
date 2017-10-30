@@ -4,7 +4,7 @@ export default [{
             import ('./app.vue')
     },
     {
-        path: '/detail',
+        path: '/detail/:id',
         component: () =>
             import ('./detail.vue')
     }
